@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue Mastery</title>
+    <!-- Import Styles -->
+    <link rel="stylesheet" href="./assets/styles.css" />
+    <!-- Import Vue.js -->
+    <script src="https://unpkg.com/vue@next"></script>
+  </head>
+  <body>
+    <div id="app">
+      <div class="nav-bar"></div>
+      <div class="cart">Cart({{cart}})</div>
+      <div class="product-display"> 
+        <div class="product-container">
+            <div class="product-image">
+              <img :src="image" alt="" :class="{'out-of-stock-img' : !inStock}">
+            </div>
+            <div class="product-info">
+              <h1>{{title}}</h1>
+
+              <h4>{{displaySale}}</h4>
+
+              <p v-if="inStock">In Stock</p>
+              <p v-else="inStock">Out of Stock</p>
+           
+              <h3>Prouct Details</h3>
+              <ul>
+                <li v-for="detail in details">{{detail}}</li>
+              </ul>
+              <h3>Product Colors</h3>
+              <div class="color-circle" v-for="(variant, index) in variants" :key="variant.id" @mouseover="updateVariant(index)" :style="{backgroundColor: variant.color}"></div>
+              <h3>Product sizes</h3>
+              <ul>
+                <li v-for="listSize in sizes">{{listSize.size}}</li>
+              </ul>
+              <button class="button" v-on:click="addToCart" :disabled="!inStock" :class="{disabledButton : !inStock}">Add to cart</button>
+
+              <a :href="url"> Mikes stores </a>
+          </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- Import Js -->
+    <script src="./main2.js"></script>
+
+    <!-- mount app -->
+    <script>
+     const mountedApp = app.mount('#app');
+  </script>
+  </body>
+</html>
